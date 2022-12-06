@@ -1,0 +1,89 @@
+%YAML 1.2
+---
+!Lacco.Lacco%2BSetting	# exe内でデータをクラス名
+Html: html/sample.html	# 読み込むHTMLファイルパス(このファイルからの相対パス)
+Width: 500				# ウィンドウ幅、0ならHTMLサイズに合わせる
+Height: 650				# ウィンドウ高さ、0ならHTMLサイズに合わせる
+Resident: False			# 常駐させるかどうか、Trueならタスク常駐状態で起動(ウィンドウは初回非表示)
+ShowKeys: [F4]			# 常駐の場合の表示非表示切り替えキー、,区切りでオプションキー(Alt,Control,Shift)の同時押し指定可能([F4, Shift]など)
+ScrollBar: True 		# スクロールバーを表示するか
+
+# HTMLタグに対するコマンド開始
+Cmds: 
+
+  # ボタン実行
+  - Id: Button
+    Run: bat/test.bat
+    Args:
+      - <SelectType>
+      - <TextData1>
+      - <FileData1>
+      - <input:CheckBoxData[]>	
+      - <input:RadioData>
+
+  # テキスト差し替え①
+  - Id: TextSampleDiv
+    Text: Divテキスト差し替え後
+  # テキスト差し替え②
+  - Id: TextSampleButton
+    Text: Buttonテキスト差し替え後
+  # vテキスト差し替え③
+  - Id: TextSampleInputText
+    Text: '%PATH%'
+	
+  # value差し替え①
+  - Id: ValueSampleInputText1
+    Value: Input type="text"はTextとValueが共通です。
+  # value差し替え②
+  - Id: ValueSampleInputText2
+    Value: "\tタブ記述"	    # ""で囲うとエスケープシーケンスなどを正しく解釈します
+	
+  # Idでのテキスト差し替え
+  - Id: IdSample
+    Text: IdSampleテキスト差し替え後
+  # Tag,Nameでのテキスト差し替え
+  - Tag: div
+    Name: NameSample
+	# テキスト内にタグは追加できないので\nで改行
+    Text: "Tag=div Name=NameSample\n
+          テキスト差し替え後"
+
+  # ボタンからの実行サンプル
+  - Id: RunSampleButton
+    Value: ボタンのValue
+    Run: bat/test.bat
+    Args: [<$>]
+  # リンクからの実行サンプル
+  - Id: RunSampleA
+    Value: リンクのValue
+    Run: bat/test.bat
+    Args: [<$>]
+  # 引数の実行サンプル
+  - Id: ArgsSampleButton
+    Value: 引数のサンプルボタンValue
+    Run: bat/test.bat
+    Args:
+      - 設定からのテキスト
+      - <$>
+      - <RunSampleA>
+      - <button:ArgsSampleArg>	
+  
+  # AddChildサンプル
+  - Id: AddChildSampleSelect
+    Value: サンプルリスト②を選択
+    Property: SelectSample
+    AddChild:
+      - Tag: option
+        Text: サンプルリスト①
+        Value: サンプルリスト①を選択
+      - Tag: option
+        Text: サンプルリスト②
+        Value: サンプルリスト②を選択
+      - Tag: option
+        Text: サンプルリスト③
+        Value: サンプルリスト③を選択
+  # 選択リストの引数取得サンプル
+  - Id: AddChildSampleButton
+    Run: bat/test.bat
+    Args: [<AddChildSampleSelect>]
+...

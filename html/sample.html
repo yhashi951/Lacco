@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+
+<title>Lacco</title>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/style-s.css">
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<style>
+#main h1 {
+	background: #d72323 url(images/bg1.png);
+}
+nav#mainmenu ul li a {
+	background: #ffffff url(images/arrow1.png) no-repeat 10px center;
+}
+</style>
+<![endif]-->
+
+<!-- favicon -->
+<link rel="shortcut icon" sizes="16x16" href="images/lacco.ico">
+<!-- /favicon -->
+
+</head>
+
+<body>
+
+<div id="container">
+
+<header>
+<h1><a href="index.html"><img src="images/logo.png" width="150" height="50" alt="Lacco"></a></h1>
+</header>
+
+<div id="contents">
+
+<div id="main">
+
+<section>
+<h1>サンプル</h1>
+<p>
+Laccoの設定で可能なサンプルです。
+</p>
+
+<table class="ta1 mb1em">
+<caption>○サンプル</caption>
+
+	<tr>
+		<th>
+			選択リスト
+		</th>
+		<td>
+			<h3>・リストデータ：</h3>
+			<select id="SelectType" multiple size="4" style="margin-left: 50px;">
+				<option value="選択パラメータ①">選択パラメータ①</option>
+				<option value="選択パラメータ②">選択パラメータ②</option>
+				<option value="選択パラメータ③">選択パラメータ③</option>
+				<option value="選択パラメータ④">選択パラメータ④</option>
+			</select>
+			<hr />
+			<h3>・テキストデータ</h3>
+			<input type="text" id="TextData1" size="30" style="margin-left: 50px;" class="inputText" />
+			<hr />
+			<h3>・ファイルデータ</h3>
+			<input type="file" id="FileData1" size="30" style="margin-left: 50px;" class="inputText" />
+			<hr />
+			<h3>・チェックボックス</h3>
+			<p style="margin-left: 50px;">
+				<input type="checkbox" name="CheckBoxData[]" size="30" value="Check1" />①
+				<input type="checkbox" name="CheckBoxData[]" size="30" value="Check2" />②
+				<input type="checkbox" name="CheckBoxData[]" size="30" value="Check3" />③
+				<input type="checkbox" name="CheckBoxData[]" size="30" value="Check4" />④
+			</p>
+			<hr />
+			<h3>・ラジオボックス</h3>
+			<p style="margin-left: 50px;">
+				<input type="radio" name="RadioData" size="30" value="Radio1" />①
+				<input type="radio" name="RadioData" size="30" value="Radio2" />②
+				<input type="radio" name="RadioData" size="30" value="Radio3" />③
+				<input type="radio" name="RadioData" size="30" value="Radio4" />④
+			</p>
+			<hr />
+			<h3>・ボタンでの実行：</h3>
+			<button type="button" id="Button" style="margin-left: 50px;">実行</button>
+		</td>
+	</tr>
+
+	<tr>
+<th>
+テキスト差し替え
+</th>
+<td>
+	<h3>・Divテキスト差し替え：</h3><div id="TextSampleDiv" style="margin-left: 50px;">差し替え前</div>
+	<hr>
+	<h3>・Buttonテキスト差し替え：</h3>
+<button type="button" id="TextSampleButton" style="margin-left: 50px;">差し替え前</button>
+	<hr>
+		<h3>・Inputテキスト差し替え、環境変数展開:%PATH%</h3>
+		<input type="text" id="TextSampleInputText" size="30" style="margin-left: 50px;" class="inputText" />
+</td>
+</tr>
+<tr>
+<th>
+Value差し替え
+</th>
+<td>
+	<h3>・value差し替え：</h3>
+<input type="text" id="ValueSampleInputText1" size="30" style="margin-left: 50px;" class="inputText" />
+	<hr>
+		<h3>・Value差し替え、特殊文字入力：</h3>
+		<input type="text" id="ValueSampleInputText2" size="30" style="margin-left: 50px;" class="inputText" />
+</td>
+</tr>
+<tr>
+	<th>
+		Tag, Name指定
+	</th>
+	<td>
+		<h3>・ID指定のテキスト差し替え：</h3>
+		<div id="IdSample" style="margin-left: 50px;">差し替え前</div>
+		<hr>
+		<h3>・Tag, Name指定のテキスト差し替え：</h3>
+		<div name="NameSample" style="margin-left: 50px;">差し替え前</div>
+		<hr>
+		<h3>・Tag, Name指定なら同じものを複数差し替え：</h3>
+		<div name="NameSample" style="margin-left: 50px;">差し替え前</div>
+	</td>
+</tr>
+
+<tr>
+	<th>
+		Exe, Batの実行
+	</th>
+	<td>
+		<h3>・ボタンでの実行：</h3>
+		<button type="button" id="RunSampleButton" Name="ArgsSampleArg" style="margin-left: 50px;">実行</button>
+		<hr>
+		<h3>・リンクからの実行：</h3>
+		<a href="#" name="RunSampleA" style="margin-left: 50px;">[実行]</a>
+		<hr>
+		<h3>・他のタグからの引数取得：</h3>
+		<button type="button" id="ArgsSampleButton" style="margin-left: 50px;">実行</button>
+	</td>
+</tr>
+
+	<tr>
+		<th>
+			選択リストの追加
+		</th>
+		<td>
+			<h3>・AddChildでのリスト追加：</h3>
+			<select id="AddChildSampleSelect" style="margin-left: 50px;"></select>
+			<button type="button" id="AddChildSampleButton" style="margin-left: 50px;">選択リストから引数取得</button>
+		</td>
+	</tr>
+</table>
+
+</section>
+
+</div>
+<!--/main-->
+
+<div id="sub">
+
+<nav id="mainmenu">
+<ul>
+<li><a href="index.html">Laccoに関して</a></li>
+<li><a href="setting.html">設定方法</a></li>
+<li><a href="manual.html">仕様・操作方法</a></li>
+<li><a href="sample.html">サンプル</a></li>
+</ul>
+</nav>
+
+<!-- 一旦非表示-->
+<aside class="box1 mb1em" style="display:none;">
+<h1 class="mb1em">ボックス表示</h1>
+<p class="mini1">
+内容
+</p>
+</aside>
+
+</div>
+<!--/sub-->
+
+
+</div>
+<!--/contents-->
+
+</div>
+<!--/container-->
+
+</body>
+</html>

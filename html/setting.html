@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+
+<title>Lacco</title>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/style-s.css">
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<style>
+#main h1 {
+	background: #d72323 url(images/bg1.png);
+}
+nav#mainmenu ul li a {
+	background: #ffffff url(images/arrow1.png) no-repeat 10px center;
+}
+</style>
+<![endif]-->
+
+<!-- favicon -->
+<link rel="shortcut icon" sizes="16x16" href="images/lacco.ico">
+<!-- /favicon -->
+
+</head>
+
+<body>
+
+<div id="container">
+
+<header>
+<h1><a href="index.html"><img src="images/logo.png" width="150" height="50" alt="Lacco"></a></h1>
+</header>
+
+<div id="contents">
+
+<div id="main">
+
+<section>
+<h1>設定ファイル</h1>
+<p>
+設定は<a href="http://magazine.rubyist.net/?0009-YAML" target="blank">yaml(ヤムル)</a>で書かれたテキストデータを
+Laccoの第一引数で渡すことで反映されます。
+引数がない場合はカレントフォルダの"main.yaml"を参照します。<br />
+また、yamlファイル内はタブを使用することはできません。<br />
+必要のない設定は省略して記述できます。<br />
+</p>
+</section>
+
+<section>
+<h1>設定の詳細</h1>
+
+<table class="ta1 mb1em">
+<caption>○基本設定</caption>
+<tr>
+<th>
+<pre class="code">
+%YAML 1.2
+---
+!Lacco.Lacco%2BSetting</pre>
+</th>
+<td>yamlフォーマットのヘッダー部分と<br />
+内部でロードするクラス名の指定です。
+必ず記述する必要があります。</td>
+</tr>
+<tr>
+<th class="code">Html: html/index.html</th>
+<td>読み込むhtmlファイルパスを指定します。<br />
+yamlファイルからの相対パスです。</td>
+</tr>
+<tr>
+<th class="code">
+Width: 0<br />
+Height: 0
+</th>
+<td>ウィンドウの幅、高さの指定をします。<br />
+デフォルト、または0ならHTMLからサイズを計算します。</td>
+</tr>
+<tr>
+<th class="code">Resident: False</th>
+<td>Laccoを常駐させるかの設定です。<br />
+Trueならタスク常駐状態で起動します。<br />
+その場合ウィンドウは非表示状態です。<br />
+</td>
+</tr>
+<tr>
+<th class="code">ShowKeys: [F4]</th>
+<td>常駐の場合にウィンドウの表示非表示を行うキーを指定します。<br />
+[]の中に判定してほしいキー名を入れてください。<br />
+,区切りでオプションキー(Alt,Control,Shift)の同時押し指定可能です。([F4, Shift]など)
+</td>
+</tr>
+<tr>
+<th class="code">ScrollBar: False</th>
+<td>スクロールバーを表示するかを指定します。<br />
+IEのバージョンによって、Trueにするとスクロールが必要なくても強制表示になります。
+その場合、スクロールが必要な場合に自動的に表示するようにしたい場合は、
+この設定をFalseにした上で、HTMLのヘッダーに下記を設定してください。<br />
+<div class="code">&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;</div>
+</td>
+</tr>
+<tr>
+<th class="code">Cmds:</th>
+<td>HTMLのタグに対しての設定を開始します。<br />
+これ以降はインデントをスペース2つ分入れ、<br />
+- 始まりで設定を入力してください。<br />
+(インデントでCmdsに含むかどうか判定されます、<br />
+ - は設定(配列)の一つの要素を表します)
+</td>
+</tr>
+</table>
+
+<table class="ta1 mb1em">
+<caption>○コマンド設定</caption>
+<tr>
+<th class="code">Id:</th>
+<td>
+Htmlタグでid属性で指定された名前と一致するものに対して設定を付与します。<br />
+id属性はHTML内で1つのみで、同じ名前を付けることはできません。<br />
+設定の条件としてId, Tag, Nameのどれか1つが必須項目となります。
+</tr>
+<tr>
+<th class="code">Tag:</th>
+<td>
+Htmlタグ名で設定を付与します。<br />
+Id指定がされている場合、Id指定が優先です。<br />
+</tr>
+<tr>
+<th class="code">Name:</th>
+<td>
+Htmlタグでname属性で指定された名前と一致するものに対して設定を付与します。<br />
+name属性は重複が可能なため、一致する名前のもの全てに設定が付与します。<br />
+Id指定がされている場合はId指定が優先しますが、Tag指定は合わせて使用可能です。<br />
+</tr>
+<tr>
+<th class="code">Text:</th>
+<td>
+Htmlタグ内のテキスト要素の差し替えます。<br />
+指定するテキストは環境変数も使用可能です。
+</td>
+</tr>
+<tr>
+<th class="code">Value:</th>
+<td>Htmlタグ内のvalue属性の差し替えます。<br />
+value属性はexe実行時の引数などで参照可能です。<br />
+環境変数も使用可能です。
+</td>
+</tr>
+<tr>
+<th class="code">Run:</th>
+<td>Htmlタグのクリックイベントにアタッチし実行するexeを指定します。
+環境変数も使用可能です。
+</td>
+</tr>
+<tr>
+<th>
+<pre class="code">
+Args:
+  - 文字列指定
+  - &lt;id指定&gt;
+  - &lt;tag:name指定&gt;
+Args: [引数1, ...]
+</pre>
+</th>
+<td>
+Runで指定されたexe呼び出しに渡す引数の指定できます。
+- を並べるか、[]内でカンマ区切りで複数の引数が可能です。<br />
+通常文字列で引数を記述しますが、<br />
+<span class="code">&lt; &gt;</span>で囲った場合のみ、その内容をid名としタグを取得し
+value属性の値を引数とします。<br />
+<span class="code">:</span> で分けられいる場合は前方をtag名、後方をname属性名として解釈します。<br>
+<span class="code">&lt;$&gt;</span>の記述の場合は、この設定がされているタグのvalue属性を取得します。<br>
+value属性を取得した場合、必ず値はダブルクォーテーションで括られます。
+環境変数も使用可能です。
+</td>
+</tr>
+<tr>
+<th>
+<pre class="code">
+AddChild:
+  - Tag: タグ名1
+    Text: 表示名1
+    Value: value値1
+  - Tag: タグ名2
+    Text: 表示名2
+    Value: value値2</pre>
+</th>
+<td>
+指定したタグに対して子供のタグを追加します。<br />
+AddChild指定の後にくる設定は必ずインデントを下げて記述してください。<br />
+AddChild以下の書式はコマンド設定内の書式と同じですが、
+例外としてId, Tag, Nameの扱いが条件でなくその属性の付与となります。
+</td>
+</tr>
+</table>
+
+</section>
+
+</div>
+<!--/main-->
+
+<div id="sub">
+
+<nav id="mainmenu">
+<ul>
+<li><a href="index.html">Laccoに関して</a></li>
+<li><a href="setting.html">設定方法</a></li>
+<li><a href="manual.html">仕様・操作方法</a></li>
+<li><a href="sample.html">サンプル</a></li>
+</ul>
+</nav>
+
+<!-- 一旦非表示-->
+<aside class="box1 mb1em" style="display:none;">
+<h1 class="mb1em">ボックス表示</h1>
+<p class="mini1">
+内容
+</p>
+</aside>
+
+</div>
+<!--/sub-->
+
+
+</div>
+<!--/contents-->
+
+</div>
+<!--/container-->
+
+</body>
+</html>
